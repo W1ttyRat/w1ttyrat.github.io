@@ -310,3 +310,122 @@ main {
         max-width: 100%;
     }
 }
+
+.site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(6px);
+    background: color-mix(in srgb, var(--paper) 86%, transparent 14%);
+    border-bottom: 1px solid var(--line);
+}
+.site-nav .nav-grid {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.6rem 0;
+}
+.nav-brand {
+    font-weight: 800;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.98rem;
+}
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+}
+.nav-links a {
+    text-decoration: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    color: var(--muted);
+    font-weight: 700;
+}
+.nav-links a:hover {
+    color: var(--ink);
+    background: color-mix(in srgb, var(--chip) 60%, transparent 40%);
+}
+
+@media (max-width: 700px) {
+    .nav-links {
+        display: none;
+    }
+}
+
+.tech-stack .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 0.8rem;
+    margin-top: 0.6rem;
+}
+
+.tech-stack h3 {
+    margin: 0 0 0.5rem;
+    font-size: 0.82rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-weight: 800;
+}
+
+.tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tech-chips span {
+    padding: 0.45rem 0.7rem;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--line);
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--ink);
+}
+
+.skills-icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.skill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.6rem;
+    border-radius: 999px;
+    background: var(--chip);
+    border: 1px solid var(--line);
+}
+
+.skill img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    filter: grayscale(0.15) contrast(0.9);
+}
+
+.skill span {
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--ink);
+}
+
+@media (max-width: 700px) {
+    .skill img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .skill span {
+        font-size: 0.82rem;
+    }
+}

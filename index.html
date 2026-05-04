@@ -11,22 +11,38 @@
     <title>Tanel Metshein</title>
 </head>
 
-<body>
+<body id="home">
+    <nav class="site-nav">
+        <div class="container nav-grid">
+            <a class="nav-brand" href="#home">Tanel Metshein</a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#tech">Tech</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header class="hero">
         <div class="container hero-grid">
-            <div>
+            <div id="about">
                 <p class="eyebrow">Portfolio</p>
                 <h1>Tanel Metshein</h1>
-                <p class="tagline">Student and developer building projects with HTML, CSS, JavaScript, Python, Java and GDScript.</p>
+                <p class="tagline">Student and developer building projects with HTML, CSS, JavaScript, Python, Java and
+                    GDScript.</p>
                 <div class="social-links">
                     <a href="https://github.com/w1ttyrat" target="_blank" rel="noopener noreferrer">GitHub</a>
-                    <a href="https://www.facebook.com/profile.php?id=100008876081985" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    <a href="https://www.facebook.com/profile.php?id=100008876081985" target="_blank"
+                        rel="noopener noreferrer">Facebook</a>
                 </div>
             </div>
 
             <div class="hero-card">
                 <h2>About me</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nobis.</p>
+                <p>Currently a student at the Tallinn University studying Computer Science.</p>
             </div>
         </div>
     </header>
@@ -34,35 +50,93 @@
     <main class="container">
         <section class="skills-panel">
             <h2>Skills</h2>
-            
+
             <div class="skill-group">
                 <h3>Frontend</h3>
-                <div class="skill-tags">
-                    <span>HTML</span>
-                    <span>CSS</span>
-                    <span>JavaScript</span>
-                    <span>React</span>
-                    <span>TypeScript</span>
+                <div class="skill-tags skill-icons">
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/html5.svg" alt="HTML5 logo" />
+                        <span>HTML</span>
+                    </div>
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/css3.svg" alt="CSS3 logo" />
+                        <span>CSS</span>
+                    </div>
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/javascript.svg"
+                            alt="JavaScript logo" />
+                        <span>JavaScript</span>
+                    </div>
                 </div>
             </div>
 
             <div class="skill-group">
                 <h3>Backend</h3>
-                <div class="skill-tags">
-                    <span>Python</span>
-                    <span>Java</span>
-                    <span>Node.js</span>
-                    <span>EJS</span>
+                <div class="skill-tags skill-icons">
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/java.svg" alt="Java logo" onerror="this.onerror=null;this.src='data:image/svg+xml;utf8,<svg xmlns=&quot;http://www.w3.org/2000/svg&quot; width=&quot;64&quot; height=&quot;64&quot;><rect fill=&quot;%23f3f4f6&quot; width=&quot;100%25&quot; height=&quot;100%25&quot;/><text x=&quot;50%25&quot; y=&quot;50%25&quot; dominant-baseline=&quot;middle&quot; text-anchor=&quot;middle&quot; font-family=&quot;Arial,Helvetica,sans-serif&quot; font-size=&quot;14&quot; fill=&quot;%23111&quot;>Java</text></svg>'" />
+                        <span>Java</span>
+                    </div>
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/nodedotjs.svg" alt="Node.js logo" />
+                        <span>Node.js</span>
+                    </div>
                 </div>
             </div>
 
             <div class="skill-group">
                 <h3>Other</h3>
-                <div class="skill-tags">
-                    <span>GDScript</span>
+                <div class="skill-tags skill-icons">
+                    <div class="skill">
+                        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/godotengine.svg" alt="GDScript logo" />
+                        <span>GDScript</span>
+                    </div>
                 </div>
             </div>
         </section>
+
+        <section id="tech" class="container"></section>
+        <div class="language-group tech-stack">
+            <h2>Tech Stack</h2>
+
+            <div class="tech-grid">
+                <div class="tech-col">
+                    <h3>Languages</h3>
+                    <div class="tech-chips">
+                        <span>Python</span>
+                        <span>JavaScript</span>
+                        <span>Java</span>
+                        <span>HTML</span>
+                        <span>CSS</span>
+                        <span>GDScript</span>
+                    </div>
+                </div>
+
+                <div class="tech-col">
+                    <h3>Frameworks & Libraries</h3>
+                    <div class="tech-chips">
+                        <span>React</span>
+                        <span>Django</span>
+                        <span>Spring Boot</span>
+                        <span>NumPy</span>
+                        <span>Pandas</span>
+                    </div>
+                </div>
+
+                <div class="tech-col">
+                    <h3>Tools & Dev</h3>
+                    <div class="tech-chips">
+                        <span>Node.js</span>
+                        <span>Express</span>
+                        <span>EJS</span>
+                        <span>Git</span>
+                        <span>VS Code</span>
+                        <span>IntelliJ IDEA</span>
+                        <span>GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <section class="projects">
             <div class="section-heading">
@@ -72,6 +146,25 @@
             <div id="repos"></div>
         </section>
     </main>
+    <section id="courses" class="container">
+        <div class="language-group">
+            <h2>Courses</h2>
+            <ul>
+                <li>Codedex: Python, NumPy, Pandas, HTML, CSS</li>
+                <li>W3Schools: Django Tutorial</li>
+                <li>Hyperskill Academy: Java Introduction</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="contact" class="container">
+        <div class="language-group">
+            <h2>Contact</h2>
+            <p>Based in Tallinn, Estonia. Open to collaboration — reach out on <a href="https://github.com/w1ttyrat" target="_blank">GitHub</a>.</p>
+            <p><img src="https://github-readme-streak-stats.herokuapp.com/?user=w1ttyrat&theme=radical"
+                    alt="GitHub streak" /></p>
+        </div>
+    </section>
 </body>
 
 </html>
