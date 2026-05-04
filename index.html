@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="index.js" defer></script>
-    <title>Document</title>
+    <title>Tanel Metshein</title>
 </head>
+
 <body>
-  <main>
-    <h1>My Repositories</h1>
-    <div id="repos"></div>
-  </main>
+    <header class="hero">
+        <div class="container hero-grid">
+            <div>
+                <p class="eyebrow">Portfolio</p>
+                <h1>Tanel Metshein</h1>
+                <p class="tagline">Student and developer building projects with HTML, CSS, JavaScript, Python, Java and GDScript.</p>
+                <div class="social-links">
+                    <a href="https://github.com/w1ttyrat" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a href="https://www.facebook.com/profile.php?id=100008876081985" target="_blank" rel="noopener noreferrer">Facebook</a>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <h2>About me</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, nobis.</p>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="skills-panel">
+            <h2>Skills</h2>
+            
+            <div class="skill-group">
+                <h3>Frontend</h3>
+                <div class="skill-tags">
+                    <span>HTML</span>
+                    <span>CSS</span>
+                    <span>JavaScript</span>
+                    <span>React</span>
+                    <span>TypeScript</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>Backend</h3>
+                <div class="skill-tags">
+                    <span>Python</span>
+                    <span>Java</span>
+                    <span>Node.js</span>
+                    <span>EJS</span>
+                </div>
+            </div>
+
+            <div class="skill-group">
+                <h3>Other</h3>
+                <div class="skill-tags">
+                    <span>GDScript</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects">
+            <div class="section-heading">
+                <h2>My Repositories</h2>
+                <p>Grouped by language and shown as cards.</p>
+            </div>
+            <div id="repos"></div>
+        </section>
+    </main>
 </body>
+
 </html>

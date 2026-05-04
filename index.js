@@ -36,6 +36,14 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`
 
                     const title = document.createElement('strong');
                     title.textContent = repo.name;
+                    if (repo.fork) {
+                        const fork = document.createElement('span');
+                        fork.textContent = 'fork';
+                        fork.style.fontSize = '0.75em';
+                        fork.style.marginLeft = '0.5rem';
+                        fork.style.opacity = '0.6';
+                        title.appendChild(fork);
+                    }
 
                     const description = document.createElement('p');
                     description.textContent = repo.description || 'No description';
