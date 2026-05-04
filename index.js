@@ -1,6 +1,5 @@
 const username = "w1ttyrat";
 
-
 fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
     .then(response => response.json())
     .then(repos => {
