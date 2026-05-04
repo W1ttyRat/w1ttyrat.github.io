@@ -8,9 +8,9 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`
 
         const grouped = repos.reduce((groups, repo) => {
             const language = repo.language || 'Other';
-        if (!groups[language]) groups[language] = [];
-        groups[language].push(repo);
-        return groups;
+            if (!groups[language]) groups[language] = [];
+            groups[language].push(repo);
+            return groups;
         }, {});
 
         const languages = Object.keys(grouped).sort();
@@ -32,16 +32,20 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`
                     card.className = "repo-card";
                     card.href = repo.html_url;
                     card.target = "_blank";
-                    card.rel = "noreferrer";
+                    card.rel = "noopener noreferrer";
 
-                    card.innerHTML = `
-                        <strong>${repo.name}</strong>
-                        <p>${repo.description || 'No description'}</p>
-                    `;
+                    const title = document.createElement('strong');
+                    title.textContent = repo.name;
+
+                    const description = document.createElement('p');
+                    description.textContent = repo.description || 'No description';
+
+                    card.appendChild(title);
+                    card.appendChild(description);
 
                     list.appendChild(card);
                 });
-            
+
             section.appendChild(heading);
             section.appendChild(list);
             container.appendChild(section);
