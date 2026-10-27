@@ -1,16 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap');
-
 :root {
-    --bg: #f4efe7;
-    --paper: #fffaf2;
-    --paper-2: #f7f1e8;
-    --ink: #221c16;
-    --muted: #645b52;
-    --line: #d7c8b8;
-    --accent: #0f766e;
-    --accent-2: #b45309;
-    --chip: #ece4d8;
-    --shadow: 0 14px 34px rgba(56, 39, 24, 0.14);
+    /* sky, grass and gold are lifted from Roll & Ruin's title screen */
+    --sky: #8ccff0;
+    --sky-deep: #3d7fd6;
+    --grass: #6fbf62;
+    --grass-dark: #4f9e47;
+    --gold: #ffcf3f;
+    --gold-edge: #b8761a;
+    --ink: #1d2733;
+    --muted: #5a6574;
+    --line: #e2e6eb;
+    --paper: #ffffff;
+    --body: "Atkinson Hyperlegible", system-ui, sans-serif;
+    --game: "Fredoka", "Atkinson Hyperlegible", sans-serif;
 }
 
 * {
@@ -23,409 +24,420 @@ html {
 
 body {
     margin: 0;
+    background: var(--paper);
     color: var(--ink);
-    font-family: "Manrope", "Segoe UI", sans-serif;
-    background:
-        radial-gradient(circle at 100% 0, rgba(15, 118, 110, 0.1), transparent 36%),
-        radial-gradient(circle at 0 20%, rgba(180, 83, 9, 0.08), transparent 28%),
-        repeating-linear-gradient(
-            -45deg,
-            transparent 0 14px,
-            rgba(34, 28, 22, 0.02) 14px 15px
-        ),
-        var(--bg);
-    line-height: 1.55;
+    font: 1.0625rem/1.6 var(--body);
+}
+
+img {
+    max-width: 100%;
 }
 
 a {
-    color: inherit;
+    color: var(--sky-deep);
+    text-underline-offset: 0.18em;
 }
 
-.container {
-    width: min(1120px, calc(100% - 2.4rem));
-    margin: 0 auto;
+a:hover {
+    color: var(--ink);
+}
+
+:focus-visible {
+    outline: 3px solid var(--sky-deep);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+.wrap {
+    width: min(64rem, 100% - 2rem);
+    margin-inline: auto;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+/* ---------- Sky band: the game hero ---------- */
+
+.sky {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(var(--sky) 60%, #b7e3f7);
+    padding-bottom: 5rem;
+}
+
+/* the green hill along the bottom, as on the game's title screen */
+.sky::after {
+    content: "";
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    bottom: -7rem;
+    height: 11rem;
+    background: var(--grass);
+    border-top: 6px solid var(--grass-dark);
+    border-radius: 50% 50% 0 0;
+}
+
+.nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+    padding: 1.25rem 0;
+}
+
+.nav a {
+    color: var(--ink);
+    text-decoration: none;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.nav-name {
+    font-weight: 700;
+}
+
+.nav ul {
+    display: flex;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
 .hero {
-    padding: 2.3rem 0 1.25rem;
-}
-
-.hero-grid {
-    display: grid;
-    grid-template-columns: 1.3fr 0.9fr;
-    gap: 1.25rem;
-    align-items: stretch;
-}
-
-.eyebrow {
-    margin: 0 0 0.8rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    font-weight: 800;
-}
-
-.hero h1 {
-    margin: 0;
-    font-family: "Fraunces", Georgia, serif;
-    font-size: clamp(2.2rem, 6vw, 4.8rem);
-    line-height: 0.95;
-    letter-spacing: -0.02em;
-    max-width: 9ch;
-}
-
-.tagline {
-    margin: 1rem 0 1.1rem;
-    max-width: 56ch;
-    color: var(--muted);
-    font-size: 1.02rem;
-}
-
-.hero-card,
-.skills-panel,
-.language-group,
-.repo-card {
-    background: color-mix(in srgb, var(--paper) 88%, white 12%);
-    border: 1px solid var(--line);
-    box-shadow: var(--shadow);
-}
-
-.hero-card {
-    border-radius: 20px;
-    padding: 1.3rem;
     position: relative;
-    overflow: hidden;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 2rem 4rem;
+    padding-top: 2rem;
 }
 
-.hero-card::before {
-    content: "";
-    position: absolute;
-    inset: 0 auto auto 0;
-    width: 100%;
-    height: 5px;
-    background: linear-gradient(90deg, var(--accent), var(--accent-2));
-}
-
-.hero-card h2,
-.skills-panel h2,
-.section-heading h2 {
-    margin: 0 0 0.7rem;
-    font-family: "Fraunces", Georgia, serif;
-    font-size: 1.35rem;
-    letter-spacing: -0.01em;
-}
-
-.hero-card p {
+.game-title {
     margin: 0;
+    font-family: var(--game);
+    font-weight: 700;
+    font-size: clamp(3.5rem, 10vw, 6.75rem);
+    line-height: 0.9;
+    color: var(--gold);
+    -webkit-text-stroke: 0.09em var(--ink);
+    paint-order: stroke fill;
+    text-shadow: 0 0.07em 0 var(--ink);
+}
+
+.hero-lede {
+    max-width: 34rem;
+    margin: 1.5rem 0 2rem;
+    font-size: 1.1875rem;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 0.7rem 1.6rem;
+    font: 600 1.375rem/1.2 var(--game);
+    color: var(--ink);
+    text-decoration: none;
+    background: var(--gold);
+    border: 3px solid var(--ink);
+    border-radius: 16px;
+    box-shadow: 0 5px 0 var(--gold-edge), 0 5px 0 3px var(--ink);
+    transition: transform 80ms, box-shadow 80ms;
+}
+
+.btn-gold:hover {
+    color: var(--ink);
+    background: #ffd95f;
+}
+
+.btn-gold:active {
+    transform: translateY(4px);
+    box-shadow: 0 1px 0 var(--gold-edge), 0 1px 0 3px var(--ink);
+}
+
+.die {
+    padding: 0;
+    line-height: 0;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.die img,
+.pixel {
+    image-rendering: pixelated;
+}
+
+.die.rolling img {
+    animation: wobble 90ms linear infinite alternate;
+}
+
+@keyframes wobble {
+    from { transform: rotate(-12deg); }
+    to { transform: rotate(12deg); }
+}
+
+.die-note {
+    font-size: 0.9375rem;
     color: var(--muted);
 }
 
-.social-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.65rem;
+.phone {
+    display: block;
+    width: 16rem;
+    line-height: 0;
+    border: 10px solid var(--ink);
+    border-radius: 28px;
+    overflow: hidden;
+    background: var(--ink);
+    box-shadow: 0 1.5rem 2.5rem -1rem rgba(29, 39, 51, 0.45);
 }
 
-.social-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.62rem 0.95rem;
-    border-radius: 999px;
-    border: 1px solid var(--line);
-    background: var(--paper);
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 0.9rem;
-    transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+.phone img {
+    width: 100%;
+    height: auto;
 }
 
-.social-links a:hover {
-    transform: translateY(-2px);
-    background: #ffffff;
-    border-color: color-mix(in srgb, var(--accent) 40%, var(--line));
-}
+/* ---------- Portfolio body ---------- */
 
-main {
+.row {
     display: grid;
-    gap: 1.25rem;
-    padding-bottom: 3.25rem;
+    grid-template-columns: 10rem minmax(0, 1fr);
+    gap: 0.75rem 2.5rem;
+    padding: 3rem 0;
+    border-top: 1px solid var(--line);
 }
 
-.skills-panel {
-    border-radius: 20px;
-    padding: 1.15rem 1.2rem;
+#about {
+    border-top: 0;
 }
 
-.skill-group {
-    margin-bottom: 1.15rem;
+.row h2 {
+    margin: 0;
+    font-size: 1.0625rem;
+    line-height: 1.6;
 }
 
-.skill-group:last-child {
-    margin-bottom: 0;
+.row p {
+    margin: 0 0 0.75rem;
+    max-width: 40rem;
 }
 
-.skill-group h3 {
-    margin: 0 0 0.65rem;
-    color: var(--accent);
-    font-size: 0.76rem;
-    text-transform: uppercase;
-    letter-spacing: 0.13em;
-    font-weight: 800;
+.intro {
+    font-size: 1.375rem;
+    line-height: 1.5;
 }
 
-.skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.55rem;
+.stack {
+    display: grid;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0.6rem 1.5rem;
+    margin: 0;
 }
 
-.skill-tags span {
-    display: inline-flex;
-    align-items: center;
-    padding: 0.45rem 0.72rem;
-    border-radius: 999px;
-    border: 1px solid #d8c8b6;
-    background: var(--chip);
-    font-size: 0.86rem;
-    font-weight: 700;
-    color: #2d241b;
+.stack dt {
+    color: var(--muted);
+}
+
+.stack dd {
+    margin: 0;
+    max-width: 40rem;
 }
 
 .projects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.projects li {
+    padding-bottom: 1.5rem;
+}
+
+.projects h3 {
+    margin: 0 0 0.2rem;
+    font-size: 1.1875rem;
+}
+
+.projects p {
+    margin: 0;
+}
+
+.tech {
+    color: var(--muted);
+    font-size: 0.9375rem;
+}
+
+.sub {
+    margin: 1.5rem 0 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    font-size: 1.0625rem;
+}
+
+.repo-group {
     display: grid;
-    gap: 0.8rem;
+    grid-template-columns: 7rem minmax(0, 1fr);
+    gap: 0 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.section-heading h2 {
-    margin-bottom: 0.2rem;
+.repo-group h4 {
+    margin: 0;
+    font-weight: 400;
+    color: var(--muted);
 }
 
-.section-heading p {
+.repo-group ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.repo-group span {
+    color: var(--muted);
+    font-size: 0.9375rem;
+}
+
+.plain {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+.links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* ---------- Roll & Ruin page ---------- */
+
+.game-head {
+    position: relative;
+    z-index: 1;
+    padding-top: 1.5rem;
+    text-align: center;
+}
+
+.game-head .hero-lede {
+    margin: 1.25rem auto 0.25rem;
+    font: 600 1.5rem/1.3 var(--game);
+}
+
+.status {
     margin: 0;
     color: var(--muted);
 }
 
-#repos {
-    display: grid;
-    gap: 1rem;
-}
-
-.language-group {
-    border-radius: 20px;
-    padding: 1.05rem;
-}
-
-.language-group h2 {
-    margin: 0 0 0.85rem;
-    font-size: 0.9rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.14em;
-    color: var(--accent);
-    border-bottom: 1px dashed #cbb79f;
-    padding-bottom: 0.55rem;
-}
-
-.repo-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-    gap: 0.8rem;
-}
-
-.repo-card {
-    display: block;
-    border-radius: 14px;
-    padding: 0.9rem;
-    text-decoration: none;
+.shots {
     position: relative;
-    background: linear-gradient(180deg, #fffdf8 0%, #fff8ee 100%);
-    transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2.5rem;
 }
 
-.repo-card::after {
-    content: "";
-    position: absolute;
-    right: 0.7rem;
-    top: 0.7rem;
-    width: 8px;
-    height: 8px;
-    border-radius: 999px;
-    background: color-mix(in srgb, var(--accent) 70%, white 30%);
-    opacity: 0.35;
-    transition: opacity 160ms ease;
-}
-
-.repo-card:hover {
-    transform: translateY(-3px);
-    border-color: #ccb89f;
-    box-shadow: 0 10px 24px rgba(58, 40, 23, 0.15);
-}
-
-.repo-card:hover::after {
-    opacity: 1;
-}
-
-.repo-card strong {
-    display: block;
-    margin-bottom: 0.35rem;
-    font-size: 0.98rem;
-}
-
-.repo-card p {
+.shots figure {
     margin: 0;
-    color: #62584f;
-    font-size: 0.9rem;
-    line-height: 1.45;
 }
 
-.language-group,
-.skills-panel,
-.hero-card {
-    animation: slideIn 420ms ease both;
+.shots .phone {
+    width: 100%;
 }
 
-@keyframes slideIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
+.shots figcaption {
+    margin-top: 0.75rem;
+    text-align: center;
+    font-weight: 700;
+}
+
+.sprites {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.sprites li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.lands {
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.lands strong {
+    display: inline-block;
+    min-width: 5.5rem;
+}
+
+.back {
+    padding: 2rem 0 4rem;
+    border-top: 1px solid var(--line);
+}
+
+@media (max-width: 760px) {
+    .shots {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
     }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
-@media (max-width: 900px) {
-    .hero-grid {
+@media (max-width: 760px) {
+    .hero {
+        grid-template-columns: 1fr;
+        padding-top: 1rem;
+    }
+
+    .phone {
+        width: 12rem;
+        justify-self: center;
+    }
+
+    .row,
+    .stack,
+    .repo-group {
         grid-template-columns: 1fr;
     }
 
-    .hero {
-        padding-top: 1.35rem;
+    .row {
+        padding: 2.25rem 0;
     }
 
-    .hero h1 {
-        max-width: 100%;
+    .stack dd,
+    .repo-group ul {
+        margin-bottom: 0.75rem;
     }
-}
 
-.site-nav {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    backdrop-filter: blur(6px);
-    background: color-mix(in srgb, var(--paper) 86%, transparent 14%);
-    border-bottom: 1px solid var(--line);
-}
-.site-nav .nav-grid {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 0.6rem 0;
-}
-.nav-brand {
-    font-weight: 800;
-    color: var(--accent);
-    text-decoration: none;
-    font-size: 0.98rem;
-}
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 0.8rem;
-    margin: 0;
-    padding: 0;
-}
-.nav-links a {
-    text-decoration: none;
-    padding: 0.45rem 0.65rem;
-    border-radius: 8px;
-    color: var(--muted);
-    font-weight: 700;
-}
-.nav-links a:hover {
-    color: var(--ink);
-    background: color-mix(in srgb, var(--chip) 60%, transparent 40%);
-}
-
-@media (max-width: 700px) {
-    .nav-links {
-        display: none;
+    .intro {
+        font-size: 1.1875rem;
     }
 }
 
-.tech-stack .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 0.8rem;
-    margin-top: 0.6rem;
-}
-
-.tech-stack h3 {
-    margin: 0 0 0.5rem;
-    font-size: 0.82rem;
-    color: var(--accent);
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    font-weight: 800;
-}
-
-.tech-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.tech-chips span {
-    padding: 0.45rem 0.7rem;
-    border-radius: 999px;
-    background: var(--chip);
-    border: 1px solid var(--line);
-    font-weight: 700;
-    font-size: 0.88rem;
-    color: var(--ink);
-}
-
-.skills-icons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    align-items: center;
-}
-
-.skill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.35rem 0.6rem;
-    border-radius: 999px;
-    background: var(--chip);
-    border: 1px solid var(--line);
-}
-
-.skill img {
-    width: 20px;
-    height: 20px;
-    display: block;
-    filter: grayscale(0.15) contrast(0.9);
-}
-
-.skill span {
-    font-weight: 700;
-    font-size: 0.88rem;
-    color: var(--ink);
-}
-
-@media (max-width: 700px) {
-    .skill img {
-        width: 18px;
-        height: 18px;
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
     }
 
-    .skill span {
-        font-size: 0.82rem;
+    .die.rolling img {
+        animation: none;
     }
 }

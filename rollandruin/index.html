@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Roll & Ruin, a dice-board roguelite for Android made in Godot by Tanel Metshein.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;600;700&display=swap">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="icon" href="img/die_6.png">
+    <title>Roll &amp; Ruin</title>
+</head>
+
+<body>
+    <header class="sky">
+        <nav class="wrap nav">
+            <a class="nav-name" href="../">Tanel Metshein</a>
+            <ul>
+                <li><a href="#play">How it plays</a></li>
+                <li><a href="#lands">Lands</a></li>
+                <li><a href="#built">How it's built</a></li>
+            </ul>
+        </nav>
+
+        <div class="wrap game-head">
+            <h1 class="game-title">Roll &amp; Ruin</h1>
+            <p class="hero-lede">Roll the die. Survive the board.</p>
+            <p class="status">In development for Android phones. It isn't on the Play Store yet.</p>
+        </div>
+
+        <div class="wrap shots">
+            <figure>
+                <div class="phone"><img src="img/title.png" alt="Title screen with the knight and a Play button"
+                        width="360" height="640"></div>
+                <figcaption>Title screen</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="img/hub.png" alt="The hub, where you choose which land to play"
+                        width="360" height="640"></div>
+                <figcaption>Choosing a land</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="img/board.png" alt="The board in the Meadow land on lap 1 of 10"
+                        width="360" height="640"></div>
+                <figcaption>A level in Meadow</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="img/wheel.png" alt="The Wheel of Fate corner event" width="360"
+                        height="640"></div>
+                <figcaption>The Wheel of Fate</figcaption>
+            </figure>
+        </div>
+    </header>
+
+    <main class="wrap">
+        <section id="play" class="row">
+            <h2>How it plays</h2>
+            <div>
+                <p>Each turn you roll a die, then choose to go, nudge the result by one, or reroll. The tile you
+                    land on decides what happens next. After ten laps the boss wakes up in the middle of the board,
+                    and every tile leads to it.</p>
+                <p>Fights play out by themselves. Your one decision is when to drink a heal potion.</p>
+                <p>Weapons, armour and trinkets come in five rarities. Rarer items carry enchants such as
+                    lifesteal, cleave, lightning, thorns and frost, and an arrow shows whether a drop is an
+                    upgrade.</p>
+                <p>Passing Start refills the board, and every fourth lap stops you in a shop. Between runs you
+                    unlock heroes, buy permanent upgrades and pick up daily missions.</p>
+            </div>
+        </section>
+
+        <section class="row">
+            <h2>What you land on</h2>
+            <ul class="sprites">
+                <li><img class="pixel" src="img/skull.png" alt="" width="36" height="36">Fights</li>
+                <li><img class="pixel" src="img/icon_elite.png" alt="" width="36" height="36">Elite fights</li>
+                <li><img class="pixel" src="img/icon_treasure.png" alt="" width="36" height="36">Treasure</li>
+                <li><img class="pixel" src="img/icon_shop.png" alt="" width="36" height="36">Shops</li>
+                <li><img class="pixel" src="img/icon_mystery.png" alt="" width="36" height="36">Mysteries</li>
+                <li><img class="pixel" src="img/blessing.png" alt="" width="36" height="36">Blessings</li>
+                <li><img class="pixel" src="img/icon_rest.png" alt="" width="36" height="36">Rest</li>
+                <li><img class="pixel" src="img/icon_boss.png" alt="" width="36" height="36">The boss</li>
+            </ul>
+        </section>
+
+        <section id="lands" class="row">
+            <h2>Lands</h2>
+            <div>
+                <p>Five lands, played in order, each with its own boss. Clearing the Castle opens an endless
+                    mode.</p>
+                <ol class="sprites lands">
+                    <li><img class="pixel" src="img/golem.png" alt="" width="48" height="48">
+                        <span><strong>Meadow</strong> Ruin Golem</span></li>
+                    <li><img class="pixel" src="img/lich.png" alt="" width="48" height="48">
+                        <span><strong>Crypt</strong> Lich</span></li>
+                    <li><img class="pixel" src="img/magma_dragon.png" alt="" width="48" height="48">
+                        <span><strong>Volcano</strong> Magma Dragon</span></li>
+                    <li><img class="pixel" src="img/frost_giant.png" alt="" width="48" height="48">
+                        <span><strong>Frost</strong> Frost Giant</span></li>
+                    <li><img class="pixel" src="img/dark_king.png" alt="" width="48" height="48">
+                        <span><strong>Castle</strong> Dark King</span></li>
+                </ol>
+            </div>
+        </section>
+
+        <section class="row">
+            <h2>Heroes</h2>
+            <ul class="sprites">
+                <li><img class="pixel" src="img/hero.png" alt="" width="48" height="48">Knight</li>
+                <li><img class="pixel" src="img/hero_mage.png" alt="" width="48" height="48">Mage</li>
+                <li><img class="pixel" src="img/hero_rogue.png" alt="" width="48" height="48">Rogue</li>
+            </ul>
+        </section>
+
+        <section id="built" class="row">
+            <h2>How it's built</h2>
+            <div>
+                <p>Godot 4.7 and GDScript, exported to Android. The game rules (board, combat, items,
+                    progression) live in plain classes with no scene nodes, so they run headless under 37 GUT test
+                    files.</p>
+                <p>Nothing is bought or downloaded. Every sprite, sound effect and piece of music comes out of
+                    generator scripts, and the low-poly world around the board is generated per land, the same
+                    each time you visit it.</p>
+                <p>Runs save locally and can be continued after closing the app. Signing in with Google Play Games
+                    backs progress up to the cloud.</p>
+                <p class="tech">Godot 4.7, GDScript, GUT, gdtoolkit, Google Play Games Services, AdMob, Android
+                    SDK</p>
+            </div>
+        </section>
+
+        <p class="back"><a href="../">Back to Tanel's portfolio</a></p>
+    </main>
+</body>
+
+</html>

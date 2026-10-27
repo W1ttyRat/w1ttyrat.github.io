@@ -1,9 +1,39 @@
 const username = "w1ttyrat";
 
+// Pixel die in the hero: flicks through faces, then lands on a random one.
+const die = document.querySelector('.die');
+const dieImg = die.querySelector('img');
+const dieNote = document.querySelector('.die-note');
+const showFace = n => { dieImg.src = dieImg.src.replace(/die_\d/, `die_${n}`); };
+const randomFace = () => 1 + Math.floor(Math.random() * 6);
+
+die.addEventListener('click', () => {
+    if (die.classList.contains('rolling')) return;
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let flips = reduceMotion ? 0 : 8;
+    die.classList.add('rolling');
+    const tick = () => {
+        if (flips-- > 0) {
+            showFace(randomFace());
+            setTimeout(tick, 70);
+            return;
+        }
+        const face = randomFace();
+        showFace(face);
+        die.classList.remove('rolling');
+        dieNote.textContent = `You rolled a ${face}`;
+    };
+    tick();
+});
+
 fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`)
-    .then(response => response.json())
+    .then(response => {
+        if (!response.ok) throw new Error(response.status);
+        return response.json();
+    })
     .then(repos => {
         const container = document.getElementById('repos');
+        container.replaceChildren();
 
         const grouped = repos.reduce((groups, repo) => {
             const language = repo.language || 'Other';
@@ -12,50 +42,36 @@ fetch(`https://api.github.com/users/${username}/repos?per_page=100&sort=updated`
             return groups;
         }, {});
 
-        const languages = Object.keys(grouped).sort();
+        Object.keys(grouped).sort().forEach(language => {
+            const group = document.createElement('div');
+            group.className = 'repo-group';
 
-        languages.forEach(language => {
-            const section = document.createElement('section');
-            section.className = 'language-group';
-
-            const heading = document.createElement('h2');
+            const heading = document.createElement('h4');
             heading.textContent = language;
 
-            const list = document.createElement('div');
-            list.className = 'repo-list';
-
+            const list = document.createElement('ul');
             grouped[language]
                 .sort((a, b) => a.name.localeCompare(b.name))
                 .forEach(repo => {
-                    const card = document.createElement('a');
-                    card.className = "repo-card";
-                    card.href = repo.html_url;
-                    card.target = "_blank";
-                    card.rel = "noopener noreferrer";
-
-                    const title = document.createElement('strong');
-                    title.textContent = repo.name;
-                    if (repo.fork) {
-                        const fork = document.createElement('span');
-                        fork.textContent = 'fork';
-                        fork.style.fontSize = '0.75em';
-                        fork.style.marginLeft = '0.5rem';
-                        fork.style.opacity = '0.6';
-                        title.appendChild(fork);
+                    const item = document.createElement('li');
+                    const link = document.createElement('a');
+                    link.href = repo.html_url;
+                    link.textContent = repo.name + (repo.fork ? ' (fork)' : '');
+                    item.appendChild(link);
+                    if (repo.description) {
+                        const description = document.createElement('span');
+                        description.textContent = ` ${repo.description}`;
+                        item.appendChild(description);
                     }
-
-                    const description = document.createElement('p');
-                    description.textContent = repo.description || 'No description';
-
-                    card.appendChild(title);
-                    card.appendChild(description);
-
-                    list.appendChild(card);
+                    list.appendChild(item);
                 });
 
-            section.appendChild(heading);
-            section.appendChild(list);
-            container.appendChild(section);
+            group.append(heading, list);
+            container.appendChild(group);
         });
+    })
+    .catch(() => {
+        document.getElementById('repos').innerHTML =
+            '<p class="muted">GitHub didn\'t return the repository list. You can see them all on ' +
+            '<a href="https://github.com/W1ttyRat">github.com/W1ttyRat</a>.</p>';
     });
-
