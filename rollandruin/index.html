@@ -43,7 +43,7 @@
                 <figcaption>Choosing a land</figcaption>
             </figure>
             <figure>
-                <div class="phone"><img src="img/board.png" alt="The board in the Meadow land on lap 1 of 10"
+                <div class="phone"><img src="img/board.png" alt="The board in the Meadow land on lap 1 of 5"
                         width="360" height="640"></div>
                 <figcaption>A level in Meadow</figcaption>
             </figure>
@@ -60,14 +60,16 @@
             <h2>How it plays</h2>
             <div>
                 <p>Each turn you roll a die, then choose to go, nudge the result by one, or reroll. The tile you
-                    land on decides what happens next. After ten laps the boss wakes up in the middle of the board,
+                    land on decides what happens next. After five laps the boss wakes up in the middle of the board,
                     and every tile leads to it.</p>
+                <p>The boss doesn't wait quietly. Every five rolls it curses the board with walls, graves, lava or
+                    ice, or robs the shops. The curses fade when you pass Start.</p>
                 <p>Fights play out by themselves. Your one decision is when to drink a heal potion.</p>
                 <p>Weapons, armour and trinkets come in five rarities. Rarer items carry enchants such as
                     lifesteal, cleave, lightning, thorns and frost, and an arrow shows whether a drop is an
                     upgrade.</p>
-                <p>Passing Start refills the board, and every fourth lap stops you in a shop. Between runs you
-                    unlock heroes, buy permanent upgrades and pick up daily missions.</p>
+                <p>Passing Start refills the board, and on laps 2 and 4 you stop in a shop. Between runs you
+                    unlock heroes, buy permanent upgrades, pick up daily missions and open a weekly chest.</p>
             </div>
         </section>
 
@@ -82,6 +84,16 @@
                 <li><img class="pixel" src="img/blessing.png" alt="" width="36" height="36">Blessings</li>
                 <li><img class="pixel" src="img/icon_rest.png" alt="" width="36" height="36">Rest</li>
                 <li><img class="pixel" src="img/icon_boss.png" alt="" width="36" height="36">The boss</li>
+            </ul>
+        </section>
+
+        <section class="row">
+            <h2>Boss curses</h2>
+            <ul class="sprites">
+                <li><img class="pixel" src="img/icon_wall.png" alt="" width="36" height="36">Walls</li>
+                <li><img class="pixel" src="img/icon_grave.png" alt="" width="36" height="36">Graves</li>
+                <li><img class="pixel" src="img/icon_lava.png" alt="" width="36" height="36">Lava</li>
+                <li><img class="pixel" src="img/icon_ice.png" alt="" width="36" height="36">Ice</li>
             </ul>
         </section>
 
@@ -118,15 +130,17 @@
             <h2>How it's built</h2>
             <div>
                 <p>Godot 4.7 and GDScript, exported to Android. The game rules (board, combat, items,
-                    progression) live in plain classes with no scene nodes, so they run headless under 37 GUT test
+                    progression) live in plain classes with no scene nodes, so they run headless under 41 GUT test
                     files.</p>
-                <p>Nothing is bought or downloaded. Every sprite, sound effect and piece of music comes out of
+                <p>No asset packs are bought or downloaded. Every sprite, sound effect and piece of music comes out of
                     generator scripts, and the low-poly world around the board is generated per land, the same
                     each time you visit it.</p>
                 <p>Runs save locally and can be continued after closing the app. Signing in with Google Play Games
                     backs progress up to the cloud.</p>
-                <p class="tech">Godot 4.7, GDScript, GUT, gdtoolkit, Google Play Games Services, AdMob, Android
-                    SDK</p>
+                <p>The game is free. Rewarded ads only play when you ask for one, and gem packs, skins and No Ads
+                    are sold through Google Play. Anonymous gameplay analytics are sent only with your consent.</p>
+                <p class="tech">Godot 4.7, GDScript, GUT, gdtoolkit, Google Play Games Services, Google Play
+                    Billing, AdMob, Firebase Analytics, Android SDK</p>
             </div>
         </section>
 
