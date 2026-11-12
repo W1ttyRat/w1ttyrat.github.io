@@ -5,13 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Roll & Ruin, a dice-board roguelite for Android made in Godot by Tanel Metshein.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Roll &amp; Ruin">
+    <meta property="og:description" content="Roll the die. Survive the board. A dice-board roguelite for Android.">
+    <meta property="og:url" content="https://w1ttyrat.github.io/rollandruin/">
+    <meta property="og:image" content="https://w1ttyrat.github.io/rollandruin/img/og.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Fredoka:wght@500;600;700&display=swap">
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="game.css">
     <link rel="icon" href="img/die_6.png">
     <title>Roll &amp; Ruin</title>
+    <script src="game.js" defer></script>
 </head>
 
 <body>
@@ -29,51 +39,79 @@
             <h1 class="game-title">Roll &amp; Ruin</h1>
             <p class="hero-lede">Roll the die. Survive the board.</p>
             <p class="status">In development for Android phones. It isn't on the Play Store yet.</p>
+            <div class="roller">
+                <button class="die" id="die" type="button" aria-label="Roll the die">
+                    <img class="pixel" id="die-face" src="img/die_6.png" alt="" width="72" height="72">
+                </button>
+                <p class="die-note" id="die-note" aria-live="polite">Tap the die to roll.</p>
+            </div>
         </div>
 
         <div class="wrap shots">
             <figure>
-                <div class="phone"><img src="img/title.png" alt="Title screen with the knight and a Play button"
-                        width="360" height="640"></div>
-                <figcaption>Title screen</figcaption>
+                <div class="phone">
+                    <video id="loop" muted loop playsinline preload="none" poster="media/loop_poster.webp"
+                        width="360" height="640"
+                        aria-label="Gameplay clip: a roll in Meadow, the knight hops two tiles and fights two slimes">
+                        <source src="media/loop.webm" type="video/webm">
+                        <source src="media/loop.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <figcaption>Roll, move, fight</figcaption>
             </figure>
             <figure>
-                <div class="phone"><img src="img/hub.png" alt="The hub, where you choose which land to play"
-                        width="360" height="640"></div>
-                <figcaption>Choosing a land</figcaption>
+                <div class="phone"><img src="img/shot_treasure.webp"
+                        alt="A treasure popup offering Chainmail, with a green arrow marking it as an upgrade"
+                        width="540" height="960"></div>
+                <figcaption>Loot that says if it's better</figcaption>
             </figure>
             <figure>
-                <div class="phone"><img src="img/board.png" alt="The board in the Meadow land on lap 1 of 5"
-                        width="360" height="640"></div>
-                <figcaption>A level in Meadow</figcaption>
-            </figure>
-            <figure>
-                <div class="phone"><img src="img/wheel.png" alt="The Wheel of Fate corner event" width="360"
-                        height="640"></div>
+                <div class="phone"><img src="img/shot_wheel.webp"
+                        alt="The Wheel of Fate spinning over the Sunken Reef board" width="540" height="960"></div>
                 <figcaption>The Wheel of Fate</figcaption>
+            </figure>
+            <figure>
+                <div class="phone"><img src="img/shot_boss_wakes.webp"
+                        alt="The Castle board with a red Boss Phase banner as the Dark King wakes" width="540"
+                        height="960"></div>
+                <figcaption>The boss wakes</figcaption>
             </figure>
         </div>
     </header>
 
     <main class="wrap">
-        <section id="play" class="row">
+        <section id="trailer" class="row reveal">
+            <h2>Trailer</h2>
+            <div>
+                <video class="trailer" controls preload="none" poster="media/trailer_poster.webp" width="1280"
+                    height="720">
+                    <source src="media/trailer.mp4" type="video/mp4">
+                    <a href="media/trailer.mp4">Watch the trailer (MP4)</a>
+                </video>
+                <p class="small">28 seconds, all of it recorded from the game.</p>
+            </div>
+        </section>
+
+        <section id="play" class="row reveal">
             <h2>How it plays</h2>
             <div>
                 <p>Each turn you roll a die, then choose to go, nudge the result by one, or reroll. The tile you
                     land on decides what happens next. After five laps the boss wakes up in the middle of the board,
                     and every tile leads to it.</p>
-                <p>The boss doesn't wait quietly. Every five rolls it curses the board with walls, graves, lava or
-                    ice, or robs the shops. The curses fade when you pass Start.</p>
-                <p>Fights play out by themselves. Your one decision is when to drink a heal potion.</p>
+                <p>The boss doesn't wait quietly. Every five rolls it curses the board, and each boss has its own
+                    curse. The curses fade when you pass Start.</p>
+                <p>Fights play out by themselves. You decide when to drink a heal potion and when to use your
+                    hero's skill.</p>
                 <p>Weapons, armour and trinkets come in five rarities. Rarer items carry enchants such as
                     lifesteal, cleave, lightning, thorns and frost, and an arrow shows whether a drop is an
                     upgrade.</p>
                 <p>Passing Start refills the board, and on laps 2 and 4 you stop in a shop. Between runs you
-                    unlock heroes, buy permanent upgrades, pick up daily missions and open a weekly chest.</p>
+                    unlock heroes, buy permanent upgrades, pick up daily missions, play the Daily Level and open
+                    a weekly chest.</p>
             </div>
         </section>
 
-        <section class="row">
+        <section class="row reveal">
             <h2>What you land on</h2>
             <ul class="sprites">
                 <li><img class="pixel" src="img/skull.png" alt="" width="36" height="36">Fights</li>
@@ -87,58 +125,112 @@
             </ul>
         </section>
 
-        <section class="row">
-            <h2>Boss curses</h2>
-            <ul class="sprites">
-                <li><img class="pixel" src="img/icon_wall.png" alt="" width="36" height="36">Walls</li>
-                <li><img class="pixel" src="img/icon_grave.png" alt="" width="36" height="36">Graves</li>
-                <li><img class="pixel" src="img/icon_lava.png" alt="" width="36" height="36">Lava</li>
-                <li><img class="pixel" src="img/icon_ice.png" alt="" width="36" height="36">Ice</li>
+        <section id="lands" class="row wide reveal">
+            <h2>Lands</h2>
+            <p>Ten lands, played in order, each with its own boss and its own curse. Clearing The Ruin opens
+                Expert, the same ten lands made harder with the Fate Die, which sets one rule for each lap. After
+                Expert comes Endless.</p>
+            <ol class="land-grid">
+                <li class="land light" data-fx="petals" style="--sky:#7ab8e6;--ground:#3d8045;--plate:#73b861">
+                    <span class="sprite" style="--sheet:url(img/anim/golem.png)"></span>
+                    <strong>Meadow</strong><span>Ruin Golem</span><small>Raises stone walls</small>
+                </li>
+                <li class="land" data-fx="wisps" style="--sky:#3b3550;--ground:#4a4458;--plate:#6b6480">
+                    <span class="sprite" style="--sheet:url(img/anim/lich.png)"></span>
+                    <strong>Crypt</strong><span>Lich</span><small>Opens graves</small>
+                </li>
+                <li class="land" data-fx="embers" style="--sky:#5a2a22;--ground:#4a2a24;--plate:#8a4a30">
+                    <span class="sprite" style="--sheet:url(img/anim/magma_dragon.png)"></span>
+                    <strong>Volcano</strong><span>Magma Dragon</span><small>Melts tiles into lava</small>
+                </li>
+                <li class="land light" data-fx="snow" style="--sky:#bfe3f5;--ground:#9ec9de;--plate:#e2f1f8">
+                    <span class="sprite" style="--sheet:url(img/anim/frost_giant.png)"></span>
+                    <strong>Frost</strong><span>Frost Giant</span><small>Freezes tiles so you slide</small>
+                </li>
+                <li class="land" data-fx="dust" style="--sky:#2a2440;--ground:#3a3448;--plate:#5a5070">
+                    <span class="sprite" style="--sheet:url(img/anim/dark_king.png)"></span>
+                    <strong>Castle</strong><span>Dark King</span><small>Sends thieves to the shops</small>
+                </li>
+                <li class="land" data-fx="wisps" style="--sky:#1f6f8b;--ground:#2a7f8a;--plate:#4fb3a8">
+                    <span class="sprite" style="--sheet:url(img/anim/tide_matron.png)"></span>
+                    <strong>Sunken Reef</strong><span>Tide Matron</span><small>An undertow drags you back</small>
+                </li>
+                <li class="land" data-fx="embers" style="--sky:#4a3a2a;--ground:#5a4a38;--plate:#8a7050">
+                    <span class="sprite" style="--sheet:url(img/anim/brass_foreman.png)"></span>
+                    <strong>Clockwork Foundry</strong><span>Brass Foreman</span><small>Jams Reroll and
+                        Nudge</small>
+                </li>
+                <li class="land light" data-fx="dust" style="--sky:#e8b860;--ground:#c89a50;--plate:#e8c880">
+                    <span class="sprite" style="--sheet:url(img/anim/glass_sphinx.png)"></span>
+                    <strong>Mirage Dunes</strong><span>Glass Sphinx</span><small>Hides fake chests</small>
+                </li>
+                <li class="land" data-fx="wisps" style="--sky:#2e2a4a;--ground:#3a4a3a;--plate:#6a8a5a">
+                    <span class="sprite" style="--sheet:url(img/anim/mycelia.png)"></span>
+                    <strong>Spore Hollow</strong><span>Mycelia</span><small>Spreads clinging spores</small>
+                </li>
+                <li class="land" data-fx="embers" style="--sky:#14101e;--ground:#241c30;--plate:#4a3a5a">
+                    <span class="sprite" style="--sheet:url(img/anim/last_die.png)"></span>
+                    <strong>The Ruin</strong><span>The Last Die</span><small>Cracks the board for good</small>
+                </li>
+            </ol>
+        </section>
+
+        <section class="row reveal">
+            <h2>Heroes</h2>
+            <ul class="cards">
+                <li><span class="sprite" style="--sheet:url(img/anim/hero.png)"></span>
+                    <div><strong>Knight</strong>
+                        <p>Sturdy all-rounder. Power Strike hits the front enemy for double damage.</p>
+                    </div>
+                </li>
+                <li><span class="sprite" style="--sheet:url(img/anim/hero_mage.png)"></span>
+                    <div><strong>Mage</strong>
+                        <p>Fragile but fierce. Fireball hits every enemy at once.</p>
+                    </div>
+                </li>
+                <li><span class="sprite" style="--sheet:url(img/anim/hero_rogue.png)"></span>
+                    <div><strong>Rogue</strong>
+                        <p>Fast and slippery. Smoke Bomb makes every attack miss for 3 seconds.</p>
+                    </div>
+                </li>
+                <li><span class="sprite" style="--sheet:url(img/anim/hero_valkyrie.png)"></span>
+                    <div><strong>Valkyrie</strong>
+                        <p>Spear of light. Soul Lance hits the front enemy and heals her.</p>
+                    </div>
+                </li>
             </ul>
         </section>
 
-        <section id="lands" class="row">
-            <h2>Lands</h2>
+        <section class="row reveal">
+            <h2>Pets and relics</h2>
             <div>
-                <p>Five lands, played in order, each with its own boss. Clearing the Castle opens an endless
-                    mode.</p>
-                <ol class="sprites lands">
-                    <li><img class="pixel" src="img/golem.png" alt="" width="48" height="48">
-                        <span><strong>Meadow</strong> Ruin Golem</span></li>
-                    <li><img class="pixel" src="img/lich.png" alt="" width="48" height="48">
-                        <span><strong>Crypt</strong> Lich</span></li>
-                    <li><img class="pixel" src="img/magma_dragon.png" alt="" width="48" height="48">
-                        <span><strong>Volcano</strong> Magma Dragon</span></li>
-                    <li><img class="pixel" src="img/frost_giant.png" alt="" width="48" height="48">
-                        <span><strong>Frost</strong> Frost Giant</span></li>
-                    <li><img class="pixel" src="img/dark_king.png" alt="" width="48" height="48">
-                        <span><strong>Castle</strong> Dark King</span></li>
-                </ol>
+                <p>A pet stays with you on every run. A relic lasts one run and changes how you play it.</p>
+                <ul class="sprites">
+                    <li><img class="pixel" src="img/sparkfox.png" alt="" width="48" height="48" loading="lazy">Sparkfox</li>
+                    <li><img class="pixel" src="img/shellback.png" alt="" width="48" height="48" loading="lazy">Shellback</li>
+                    <li><img class="pixel" src="img/mothling.png" alt="" width="48" height="48" loading="lazy">Mothling</li>
+                    <li><img class="pixel" src="img/golden_idol.png" alt="" width="36" height="36" loading="lazy">Golden Idol</li>
+                    <li><img class="pixel" src="img/pilgrim_token.png" alt="" width="36" height="36" loading="lazy">Pilgrim Token</li>
+                    <li><img class="pixel" src="img/merchant_seal.png" alt="" width="36" height="36" loading="lazy">Merchant Seal</li>
+                    <li><img class="pixel" src="img/hearth_stone.png" alt="" width="36" height="36" loading="lazy">Hearth Stone</li>
+                </ul>
             </div>
         </section>
 
-        <section class="row">
-            <h2>Heroes</h2>
-            <ul class="sprites">
-                <li><img class="pixel" src="img/hero.png" alt="" width="48" height="48">Knight</li>
-                <li><img class="pixel" src="img/hero_mage.png" alt="" width="48" height="48">Mage</li>
-                <li><img class="pixel" src="img/hero_rogue.png" alt="" width="48" height="48">Rogue</li>
-            </ul>
-        </section>
-
-        <section id="built" class="row">
+        <section id="built" class="row reveal">
             <h2>How it's built</h2>
             <div>
                 <p>Godot 4.7 and GDScript, exported to Android. The game rules (board, combat, items,
-                    progression) live in plain classes with no scene nodes, so they run headless under 41 GUT test
+                    progression) live in plain classes with no scene nodes, so they run headless under 53 GUT test
                     files.</p>
                 <p>No asset packs are bought or downloaded. Every sprite, sound effect and piece of music comes out of
                     generator scripts, and the low-poly world around the board is generated per land, the same
                     each time you visit it.</p>
                 <p>Runs save locally and can be continued after closing the app. Signing in with Google Play Games
                     backs progress up to the cloud.</p>
-                <p>The game is free. Rewarded ads only play when you ask for one, and gem packs, skins and No Ads
-                    are sold through Google Play. Anonymous gameplay analytics are sent only with your consent.</p>
+                <p>The game is free. Rewarded ads only play when you ask for one, and gem packs, skins, the
+                    Valkyrie bundle and No Ads are sold through Google Play. Anonymous gameplay analytics are sent
+                    only with your consent.</p>
                 <p class="tech">Godot 4.7, GDScript, GUT, gdtoolkit, Google Play Games Services, Google Play
                     Billing, AdMob, Firebase Analytics, Android SDK</p>
             </div>
